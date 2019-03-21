@@ -1,7 +1,5 @@
 package sort;
 
-import java.util.Random;
-
 /**
  * Created with IntelliJ IDEA.
  *
@@ -13,7 +11,7 @@ import java.util.Random;
 public class SelectionSort {
 
     public static void main(String[] args) {
-        int loop = 1000000;
+        int loop = 100;
         int[] arr = new int[loop];
         for(int i=0;i<loop;i++){
             arr[i] = (int) (Math.random()*1000000);
@@ -46,13 +44,14 @@ public class SelectionSort {
             arr[i] = arr[minPosition];
             arr[minPosition] = tmpmax;
         }
+        printArr(arr);
     }
 
     static void sortByTwoSide(int[] arr){
         for(int i=0,k=arr.length-1;i<=k;i++,k--){
             int minPosition = i;
             int maxPosition = i;
-            for(int j=i+1,g=k-1; j<arr.length; j++,g--){
+            for(int j=i+1,g=k; j<=g; j++,g--){
                 minPosition = arr[j] < arr[minPosition]?j:minPosition;
                 maxPosition = arr[g] < arr[maxPosition]?maxPosition:g;
             }
@@ -70,7 +69,13 @@ public class SelectionSort {
                 arr[i] = arr[minPosition];
                 arr[minPosition] = tmpmin;
             }
+        }
+        printArr(arr);
+    }
 
+    static void printArr(int[] arr){
+        for(int i=0;i<arr.length;i++){
+            System.out.print(arr[i]+" ");
         }
     }
 }
