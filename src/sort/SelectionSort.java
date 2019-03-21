@@ -11,10 +11,10 @@ package sort;
 public class SelectionSort {
 
     public static void main(String[] args) {
-        int loop = 100;
+        int loop = 1000;
         int[] arr = new int[loop];
         for(int i=0;i<loop;i++){
-            arr[i] = (int) (Math.random()*1000000);
+            arr[i] = (int) (Math.random()*loop);
         }
 
         long start1 = System.currentTimeMillis();
@@ -75,7 +75,7 @@ public class SelectionSort {
 
     static void printArr(int[] arr){
         for(int i=0;i<arr.length;i++){
-            System.out.print(arr[i]+" ");
+            //System.out.print(arr[i]+" ");
         }
     }
 }
