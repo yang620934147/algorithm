@@ -1,5 +1,8 @@
 package sort;
 
+import java.util.Arrays;
+import java.util.Random;
+
 /**
  * Created with IntelliJ IDEA.
  *
@@ -11,25 +14,43 @@ package sort;
 public class SelectionSort {
 
     public static void main(String[] args) {
-        int loop = 1000;
+        int loop = 10000;
+        Random random = new Random();
         int[] arr = new int[loop];
         for(int i=0;i<loop;i++){
-            arr[i] = (int) (Math.random()*loop);
+            arr[i] = random.nextInt(loop);
         }
+        int[] arr1 = new int[arr.length];
+        int[] arr2 = new int[arr.length];
+        int[] arr3 = new int[arr.length];
+        System.arraycopy(arr,0,arr1,0,arr.length);
+        System.arraycopy(arr,0,arr2,0,arr.length);
+        System.arraycopy(arr,0,arr3,0,arr.length);
 
         long start1 = System.currentTimeMillis();
 
-        sortByOneSide(arr);
+        sortByOneSide(arr1);
 
         long spend1 = System.currentTimeMillis()-start1;
         System.out.println("方法一执行时间:"+spend1);
+        //printArr(arr1);
+
 
         long start2 = System.currentTimeMillis();
 
-        sortByTwoSide(arr);
+        sortByTwoSide(arr2);
 
         long spend2 = System.currentTimeMillis()-start2;
         System.out.println("方法二执行时间:"+spend2);
+        //printArr(arr2);
+
+        long start3 = System.currentTimeMillis();
+
+        Arrays.sort(arr3);
+
+        long spend3 = System.currentTimeMillis()-start3;
+        System.out.println("jdk自带方法执行时间:"+spend3);
+        //printArr(arr3);
     }
 
     /**
@@ -48,7 +69,7 @@ public class SelectionSort {
             arr[i] = arr[minPosition];
             arr[minPosition] = tmpmax;
         }
-        printArr(arr);
+        //printArr(arr);
     }
 
     /**
@@ -59,7 +80,7 @@ public class SelectionSort {
         for(int i=0,k=arr.length-1;i<=k;i++,k--){
             int minPosition = i;
             int maxPosition = i;
-            for(int j=i+1,g=k; j<=g; j++,g--){
+            for(int j=i+1,g=k; j<k-1 && g>i; j++,g--){
                 minPosition = arr[j] < arr[minPosition]?j:minPosition;
                 maxPosition = arr[g] < arr[maxPosition]?maxPosition:g;
             }
@@ -78,12 +99,13 @@ public class SelectionSort {
                 arr[minPosition] = tmpmin;
             }
         }
-        printArr(arr);
+        //printArr(arr);
     }
 
     static void printArr(int[] arr){
         for(int i=0;i<arr.length;i++){
-            //System.out.print(arr[i]+" ");
+            System.out.print(arr[i]+" ");
         }
+        System.out.println();
     }
 }
