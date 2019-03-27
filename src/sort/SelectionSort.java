@@ -14,7 +14,7 @@ import java.util.Random;
 public class SelectionSort {
 
     public static void main(String[] args) {
-        int loop = 10000;
+        int loop = 100000;
         Random random = new Random();
         int[] arr = new int[loop];
         for(int i=0;i<loop;i++){
@@ -23,25 +23,29 @@ public class SelectionSort {
         int[] arr1 = new int[arr.length];
         int[] arr2 = new int[arr.length];
         int[] arr3 = new int[arr.length];
+        int[] arr4 = new int[arr.length];
+        int[] arr5 = new int[arr.length];
         System.arraycopy(arr,0,arr1,0,arr.length);
         System.arraycopy(arr,0,arr2,0,arr.length);
         System.arraycopy(arr,0,arr3,0,arr.length);
+        System.arraycopy(arr,0,arr4,0,arr.length);
+        System.arraycopy(arr,0,arr5,0,arr.length);
 
         long start1 = System.currentTimeMillis();
 
-        sortByOneSide(arr1);
+        QuickSort.sort(arr1,0,arr1.length-1);
 
         long spend1 = System.currentTimeMillis()-start1;
-        System.out.println("方法一执行时间:"+spend1);
+        System.out.println("QuickSort执行时间:"+spend1);
         //printArr(arr1);
 
 
         long start2 = System.currentTimeMillis();
 
-        sortByTwoSide(arr2);
+        MergeSort.mergeSort(arr2,0,arr2.length-1);
 
         long spend2 = System.currentTimeMillis()-start2;
-        System.out.println("方法二执行时间:"+spend2);
+        System.out.println("MergeSort执行时间:"+spend2);
         //printArr(arr2);
 
         long start3 = System.currentTimeMillis();
@@ -51,6 +55,20 @@ public class SelectionSort {
         long spend3 = System.currentTimeMillis()-start3;
         System.out.println("jdk自带方法执行时间:"+spend3);
         //printArr(arr3);
+
+//        long start4 = System.currentTimeMillis();
+//
+//        InsertSort.sort(arr4);
+//
+//        long spend4 = System.currentTimeMillis()-start4;
+//        System.out.println("InsertSort方法执行时间:"+spend4);
+//
+//        long start5 = System.currentTimeMillis();
+//
+//        BubbleSort.sort(arr5);
+//
+//        long spend5 = System.currentTimeMillis()-start5;
+//        System.out.println("BubbleSort方法执行时间:"+spend5);
     }
 
     /**
